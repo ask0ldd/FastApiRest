@@ -4,13 +4,13 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+# @app.get("/")
+# def read_root():
+    # return {"Hello": "World"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+# @app.get("/items/{item_id}")
+# def read_item(item_id: int, q: Union[str, None] = None):
+    # return {"item_id": item_id, "q": q}
 
 @app.get("/client/{client_id}")
 def read_client(client_id : int):
@@ -40,4 +40,12 @@ def read_transactions(client_id : int):
         {"recipient" : "Ebay", "date" : "02-19-2012", "amount" : 45.50},
         {"recipient" : "Air BnB", "date" : "02-22-2012", "amount" : -120.00},
         {"recipient" : "Direct Energy", "date" : "02-23-2012", "amount" : -60.00}
+    ]
+
+
+@app.get("/debits/last2/{client_id}")
+def read_transactions(client_id : int):
+    return [
+        {"recipient" : "Uber Taxi", "frequency" : "monthly", "amount" : 120},
+        {"recipient" : "Direct Energy", "frequency" : "monthly", "amount" : 128.99},
     ]
